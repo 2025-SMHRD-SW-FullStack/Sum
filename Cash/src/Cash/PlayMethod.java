@@ -69,16 +69,14 @@ public class PlayMethod {
 	}
 
 	public void gameLevel(RankDTO dto, String userId, int level) {
+		dto = rdao.levelSelect(userId, level);
 		
-		if (level == 1) {
-			sellPrint(1);
-		} else if (level == 2) {
-			sellPrint(2);
-		} else if (level == 3 && dto.getUserId().equals(userId)
-				&& (dto.getGmLevel() == 2 && dto.getGmClear().equals("Y"))) {
+		if (level == 3 && dto.getUserId().equals(userId)
+				&& (dto.getGmLevel() == 2 && !dto.getGmClear().equals("Y"))) {
+			// 미클리어시 보통 난이도를 먼저 클리어해주세요! 라고 출력하기
 			// 노말모드 클리어 여부 확인
-			sellPrint(3);
-		}
+			sellPrint(level);
+		} else sellPrint(level);
 	}
 
 	public void sellPrint(int level) {

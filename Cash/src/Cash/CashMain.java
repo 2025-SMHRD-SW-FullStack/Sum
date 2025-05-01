@@ -5,116 +5,112 @@ import java.util.Scanner;
 
 public class CashMain {
 
-   // 계산 비교(성공/실패) boolean check = false; if(!check)
-   // 계산 값 출력문
+	// 계산 비교(성공/실패) boolean check = false; if(!check)
+	// 계산 값 출력문
 
-   public static void main(String[] args) {
-      Scanner sc = new Scanner(System.in);
-      Random rd = new Random();
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Random rd = new Random();
 
-      boolean chk = false;
-      boolean chk2 = false;
-      CashDAO dao = new CashDAO();
-      CashDTO dto = new CashDTO();
-      RankDAO rdao = new RankDAO();
-      RankDTO rdto = new RankDTO();
-      
-      PlayMethod play = new PlayMethod();
-      
-      
-      while (true) {
-         if (!chk) {
-            System.out.println("===================================");
-            System.out.println("\t     ____||____\r\n" + "\t   //  =맞춰봐요= \\\\\r\n" + "\t  //  =시재의 숲=  \\\\\r\n"
-                  + "\t  ||-------------||\r\n" + "\t  ||   ____      ||\r\n" + "\t  ||  | __ | [ ] ||\r\n"
-                  + "\t /||__|[__]|_____||\r\n" + "\t|      ____       |\r\n" + "\t|  [] |    |[*'')]|\r\n"
-                  + "\t|_____|____|______|");
-            System.out.println("===================================");
-            System.out.print("\t[1]로그인 [2]회원가입 >> ");
-            int num = sc.nextInt();
-            
-            
-            
-            if (num == 1) {
-               System.out.println("========= ᡣ˶ᵔ ᵕ ᵔ˶𐭩 로그인 =========");
-               System.out.print("ID : ");
-               String id = sc.next();
-               System.out.print("PW : ");
-               String pw = sc.next();
+		boolean chk = false;
+		boolean chk2 = false;
+		boolean clear = true;
+		CashDAO dao = new CashDAO();
+		CashDTO dto = new CashDTO();
+		RankDAO rdao = new RankDAO();
+		RankDTO rdto = new RankDTO();
 
-               dto = dao.login(id, pw);
+		PlayMethod play = new PlayMethod();
 
-               // 아이디, 비번, 닉네임이 맞는지 확인
-               if (dto.getUserId().equals(id)&&dto.getUserPw().equals(pw)) {
-                  chk = true;
-               } else {
-                  System.out.println("== 아이디와 비밀번호를 다시 입력해주세요! ==");
-               }
+		while (true) {
+			if (!chk) {
+				System.out.println("===================================");
+				System.out.println("\t     ____||____\r\n" + "\t   //  =맞춰봐요= \\\\\r\n" + "\t  //  =시재의 숲=  \\\\\r\n"
+						+ "\t  ||-------------||\r\n" + "\t  ||   ____      ||\r\n" + "\t  ||  | __ | [ ] ||\r\n"
+						+ "\t /||__|[__]|_____||\r\n" + "\t|      ____       |\r\n" + "\t|  [] |    |[*'')]|\r\n"
+						+ "\t|_____|____|______|");
+				System.out.println("===================================");
+				System.out.print("\t[1]로그인 [2]회원가입 >> ");
+				int num = sc.nextInt();
 
-            } else if (num == 2) {
-               System.out.println("========= ( ˶’ᵕ’˶ ) 회원가입 =========");
-               System.out.print("ID : ");
-               String user_id = sc.next();
-               System.out.print("PW : ");
-               String user_pw = sc.next();
-               System.out.print("마을주민 이름 : ");
-               String user_name = sc.next();
-               dao.join(user_id, user_pw, user_name);
-            }
+				if (num == 1) {
+					System.out.println("========= ᡣ˶ᵔ ᵕ ᵔ˶𐭩 로그인 =========");
+					System.out.print("ID : ");
+					String id = sc.next();
+					System.out.print("PW : ");
+					String pw = sc.next();
 
-         } else if (chk) {
-            System.out.println("===================================");
-            System.out.print("     [1]게임 시작 [2]스토리 보기 >> ");
-            int number = sc.nextInt();
+					dto = dao.login(id, pw);
 
-            
-      
-            if (number == 1) {
-            	
-            	System.out.println("========= 난이도를 선택하세요! =========");
-                System.out.print("     [1]쉬움 [2]보통 [3]어려움 >> ");
-                int level = sc.nextInt();
-                
-                rdto = rdao.levelSelect(dto.getUserId(),level);
-                play.object(level);
-            	
-               for (int i = 1; i < 8; i++) { // 장사 날짜
-                  System.out.println("  ----------[ " + i + "일 째! ]----------");
-                  System.out.println("\t===== 카탈로그 =====");
-                  for (int j = 0; j < play.object(1).size()-1; j++) { // 카탈로그 출력
-                     System.out.println("\t| " + play.object(1).get(j).getObject() + " :\t" + play.object(1).get(j).getObjectSel()+ "벨" + "\t|");
-                  }
-                  System.out.println("===================================");
-                  try {
-                     Thread.sleep(800);
-                  } catch (InterruptedException e) {
-                     e.printStackTrace();
-                  }
-                  
-                  play.gameLevel(rdto, dto.getUserId(), level);
-               
-                 
-                  
-               }
+					// 아이디, 비번, 닉네임이 맞는지 확인
+					if (dto.getUserId().equals(id) && dto.getUserPw().equals(pw)) {
+						chk = true;
+					} else {
+						System.out.println("== 아이디와 비밀번호를 다시 입력해주세요! ==");
+					}
 
-            } else if (number == 2) {
-               System.out.println();
-               System.out.println(" ====「 " + dto.getUserName() + "! 사람들이 정말 많다구리! 고생해라구리~」====");
-               System.out.println();
-               System.out.println(" =============================================");
-               System.out.println(" | 오늘도 평화로운 이 곳은 너굴 상점...               |");
-               System.out.println(" | 매일 손님이 북적이는 섬 유일의 상점이다              |");
-               System.out.println(" | 악덕 사장 너굴은 파트타임 알바인 나만 두고 나가버렸다!!! |");
-               System.out.println(" | 새로 이사 온 섬에 일할 직장이라고는 너굴 상점뿐!       |");
-               System.out.println(" | 유일한 직장을 잃지 않게 한 치의 오차 없이 계산을 마치고  |");
-               System.out.println(" | 시재 점검을 완벽하게 마무리하자!                   |");
-               System.out.println(" =============================================");
-               System.out.println();
-            }
+				} else if (num == 2) {
+					System.out.println("========= ( ˶’ᵕ’˶ ) 회원가입 =========");
+					System.out.print("ID : ");
+					String user_id = sc.next();
+					System.out.print("PW : ");
+					String user_pw = sc.next();
+					System.out.print("마을주민 이름 : ");
+					String user_name = sc.next();
+					dao.join(user_id, user_pw, user_name);
+				}
 
-         }
+			} else if (chk) {
+				System.out.println("===================================");
+				System.out.print("     [1]게임 시작 [2]스토리 보기 >> ");
+				int number = sc.nextInt();
 
-      }
-   }
+				if (number == 1) {
+					while (clear) {
+						System.out.println("========= 난이도를 선택하세요! =========");
+						System.out.print("     [1]쉬움 [2]보통 [3]어려움 >> ");
+						int level = sc.nextInt();
+
+						rdto = rdao.levelSelect(dto.getUserId(), level);
+						play.object(level);
+
+						for (int i = 1; i < 8; i++) { // 장사 날짜
+							System.out.println("  ----------[ " + i + "일 째! ]----------");
+							System.out.println("\t===== 카탈로그 =====");
+							for (int j = 0; j < play.object(1).size() - 1; j++) { // 카탈로그 출력
+								System.out.println("\t| " + play.object(1).get(j).getObject() + " :\t"
+										+ play.object(1).get(j).getObjectSel() + "벨" + "\t|");
+							}
+							System.out.println("===================================");
+							try {
+								Thread.sleep(800);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+
+							play.gameLevel(rdto, dto.getUserId(), level);
+						}
+
+					}
+
+				} else if (number == 2) {
+					System.out.println();
+					System.out.println(" ====「 " + dto.getUserName() + "! 사람들이 정말 많다구리! 고생해라구리~」====");
+					System.out.println();
+					System.out.println(" =============================================");
+					System.out.println(" | 오늘도 평화로운 이 곳은 너굴 상점...               |");
+					System.out.println(" | 매일 손님이 북적이는 섬 유일의 상점이다              |");
+					System.out.println(" | 악덕 사장 너굴은 파트타임 알바인 나만 두고 나가버렸다!!! |");
+					System.out.println(" | 새로 이사 온 섬에 일할 직장이라고는 너굴 상점뿐!       |");
+					System.out.println(" | 유일한 직장을 잃지 않게 한 치의 오차 없이 계산을 마치고  |");
+					System.out.println(" | 시재 점검을 완벽하게 마무리하자!                   |");
+					System.out.println(" =============================================");
+					System.out.println();
+				}
+
+			}
+
+		}
+	}
 
 }
