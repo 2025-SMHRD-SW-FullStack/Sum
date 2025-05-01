@@ -62,11 +62,11 @@ public class PlayMethod {
 	
 	   public void gameLevel(RankDTO dto, String userId, int gmLevel) {
 
-		      if (dto.getGm_level() == 1) {
+		      if (dto.getGmLevel() == 1) {
 
-		      } else if (dto.getGm_level() == 2 && dto.getUser_id().equals(userId) && dto.getGm_clear().equals("Y")) {
+		      } else if (dto.getGmLevel() == 2 && dto.getUserId().equals(userId) && dto.getGmClear().equals("Y")) {
 		         
-		         } else if (dto.getGm_level() == 3 && dto.getUser_id().equals(userId) && dto.getGm_clear().equals("Y")) {
+		         } else if (dto.getGmLevel() == 3 && dto.getUserId().equals(userId) && dto.getGmClear().equals("Y")) {
 		            
 		      }
 		   }
