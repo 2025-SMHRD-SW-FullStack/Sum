@@ -41,7 +41,7 @@ public class CashMain {
                dto = dao.login(id, pw);
 
                // 아이디, 비번, 닉네임이 맞는지 확인
-               if (dto.getUserId().equals(id)) {
+               if (dto.getUserId().equals(id)&&dto.getUserPw().equals(pw)) {
                   chk = true;
                } else {
                   System.out.println("== 아이디와 비밀번호를 다시 입력해주세요! ==");

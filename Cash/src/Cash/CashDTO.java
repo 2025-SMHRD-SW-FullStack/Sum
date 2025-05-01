@@ -28,7 +28,7 @@ public class CashDTO {
 		return userPw;
 	}
 
-	public void setUser_pw(String userPw) {
+	public void setUserPw(String userPw) {
 		this.userPw = userPw;
 	}
 
