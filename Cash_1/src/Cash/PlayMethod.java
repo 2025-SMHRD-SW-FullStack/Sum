@@ -3,7 +3,7 @@ package Cash;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PlayMethod {
+public class PlayMethod extends Thread{
 	Random rd = new Random();
 
 	private int fprice = 0; // 최종 금액
@@ -60,15 +60,32 @@ public class PlayMethod {
 		// 최종값에서 환불금 뺀 금액이 시재에 저장되어야하기에 환불금을 리턴 해줌
 	}
 	
-	   public void gameLevel(RankDTO dto, String userId, int gmLevel) {
+	public int run(int level) { // 타이머 - 조건 수정
+		super.run();
+		int levelTime = 0;
 
-		      if (dto.getGm_level() == 1) {
+		int time =0;
+		if (level == 1) {
+			levelTime = 20;
+		} else if (level == 2) {
+			levelTime = 15;
+		} else if (levelTime == 3) {
+			levelTime = 30;
+		}
+		
+		for (int i = 0; i < levelTime; i++) {
+			try {
+				// if(정답이 아닐때) 
+				// else if(정답일때) 멈춰서 time 변수에 i값 넣어서 return
+				Thread.sleep(1000);
+				System.out.println(levelTime - i);
+				// else if 안에 들어감 time = i; 정답을 맞췄을때1 i 값 넣기 
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		return time;
 
-		      } else if (dto.getGm_level() == 2 && dto.getUser_id().equals(userId) && dto.getGm_clear().equals("Y")) {
-		         
-		         } else if (dto.getGm_level() == 3 && dto.getUser_id().equals(userId) && dto.getGm_clear().equals("Y")) {
-		            
-		      }
-		   }
+	}
 
 }
