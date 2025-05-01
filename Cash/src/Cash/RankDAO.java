@@ -4,8 +4,10 @@ import java.sql.SQLException;
 
 public class RankDAO extends DBDAO{
 	
-	public void rankRenewal(String user_id, int score, String gm_level) {
+	public int rankRenewal(String userId, int score, int gmLevel) {
 
+		int result = 0;
+		
 		try {
 			
 			getConn();
@@ -35,10 +37,10 @@ public class RankDAO extends DBDAO{
 					+ "  )";
 			
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, user_id);
+			psmt.setString(1, userId);
 			psmt.setInt(2, score);
-			psmt.setString(3, gm_level);
-			rs = psmt.executeQuery();
+			psmt.setInt(3, gmLevel);
+			result = psmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -47,7 +49,40 @@ public class RankDAO extends DBDAO{
 			getClose();
 
 		}
+		return result;
+	}
+	
+	public RankDTO levelSelect(String userId, int gmLevel) {
+		
+		RankDTO dto = null;
+		
+		try {
+		getConn();
+		
+		String sql = "select * from rank where user_id = '?' and gm_level ='?';";
+		
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, userId);
+			psmt.setInt(2, gmLevel);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setUserId(rs.getString("user_id"));
+				dto.setGmClear(rs.getString("gm_clear"));
+				dto.setGmLevel(rs.getInt("gm_level"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
 
+			getClose();
+
+		}
+		
+		return dto;
+		
 	}
 	
 	

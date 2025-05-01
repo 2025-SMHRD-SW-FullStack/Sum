@@ -37,11 +37,11 @@ public class CashMain {
                String id = sc.next();
                System.out.print("PW : ");
                String pw = sc.next();
-
+               //로그인 DAO 연결
                dto = dao.login(id, pw);
 
                // 아이디, 비번, 닉네임이 맞는지 확인
-               if (dto.getUser_id().equals(id)) {
+               if (dto.getUserId().equals(id)) {
                   chk = true;
                } else {
                   System.out.println("== 아이디와 비밀번호를 다시 입력해주세요! ==");
@@ -55,6 +55,7 @@ public class CashMain {
                String user_pw = sc.next();
                System.out.print("마을주민 이름 : ");
                String user_name = sc.next();
+               // 회원가입 DAO 연결
                dao.join(user_id, user_pw, user_name);
             }
 
@@ -154,7 +155,7 @@ public class CashMain {
                            + "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣷⣵⣵⣜⣸⡐⡅⢆⢅⠢⡊⢔⠰⡨⡢⣱⣰⣱⣵⣵⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n" + "");
                      System.out.println("================================");
                      System.out.println();
-                     System.out.println(" " + dto.getUser_name() + "! 시재 점검이 틀렸잖아!!!!!!");
+                     System.out.println(" " + dto.getUserName() + "! 시재 점검이 틀렸잖아!!!!!!");
                      System.out.println();
                      System.out.println("================================");
                      System.out.println();
@@ -203,7 +204,7 @@ public class CashMain {
             } else if (number == 2) {
                System.out.println("===== 스토리 설명 =====");
                System.out.println();
-               System.out.println("「 " + dto.getUser_name() + "! 사람들이 정말 많다구리! 고생해라구리~」");
+               System.out.println("「 " + dto.getUserName() + "! 사람들이 정말 많다구리! 고생해라구리~」");
                System.out.println();
                System.out.println(" ==============================================");
                System.out.println(" | 오늘도 평화로운 이 곳은 너굴 상점...                |");

@@ -6,25 +6,27 @@ public class RankDTO {
 //    SCORE      INT             -- 클리어시 기존 시간 합데이터 
 //    GM_LEVEL      VARCHAR2(10) -- 클리어 난이도
 //    GM_CLEAR      VARCHAR2
-	private String user_id;  // 유저 아이디
+	private String userId;  // 유저 아이디
 	private int score;		 // 클리어시 기존 시간 합데이터
-	private String gm_level; // 클리어 난이도
-	private String gm_clear; // 클리어 여부 확인
+	private int gmLevel; // 클리어 난이도
+	private String gmClear; // 클리어 여부 확인
 	
-	public RankDTO(String user_id, int score, String gm_level, String gm_clear) {
+	public RankDTO(String userId, int score, int gmLevel, String gmClear) {
 		super();
-		this.user_id = user_id;
+		this.userId = userId;
 		this.score = score;
-		this.gm_level = gm_level;
-		this.gm_clear = gm_clear;
+		this.gmLevel = gmLevel;
+		this.gmClear = gmClear;
+	}
+	
+	
+	
+	public String getUserId() {
+		return userId;
 	}
 
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public int getScore() {
@@ -35,20 +37,20 @@ public class RankDTO {
 		this.score = score;
 	}
 
-	public String getGm_level() {
-		return gm_level;
+	public int getGmLevel() {
+		return gmLevel;
 	}
 
-	public void setGm_level(String gm_level) {
-		this.gm_level = gm_level;
+	public void setGmLevel(int gmLevel) {
+		this.gmLevel = gmLevel;
 	}
 
-	public String getGm_clear() {
-		return gm_clear;
+	public String getGmClear() {
+		return gmClear;
 	}
 
-	public void setGm_clear(String gm_clear) {
-		this.gm_clear = gm_clear;
+	public void setGmClear(String gmClear) {
+		this.gmClear = gmClear;
 	}
 	
 	
