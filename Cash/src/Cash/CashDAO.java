@@ -57,6 +57,7 @@ public class CashDAO extends DBDAO{
 			if (rs.next()) {
 				dto = new CashDTO();
 				dto.setUserId(rs.getString("user_id"));
+				dto.setUserPw(rs.getString("user_pw"));
 				dto.setUserName(rs.getString("user_name"));
 			}
 
