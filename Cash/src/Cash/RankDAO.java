@@ -53,38 +53,39 @@ public class RankDAO extends DBDAO{
 	}
 	
 	public RankDTO levelSelect(String userId, int gmLevel) {
-		
-		RankDTO dto = null;
-		
-		try {
-		getConn();
-		
-		String sql = "select * from rank where user_id = '?' and gm_level ='?';";
-		
-			psmt = conn.prepareStatement(sql);
-			
-			psmt.setString(1, userId);
-			psmt.setInt(2, gmLevel);
-			rs = psmt.executeQuery();
-			
-			if(rs.next()) {
-				dto.setUserId(rs.getString("user_id"));
-				dto.setGmClear(rs.getString("gm_clear"));
-				dto.setGmLevel(rs.getInt("gm_level"));
-				
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
+	      
+	      RankDTO dto = null;
+	      
+	      try {
+	      getConn();
+	      System.out.println(userId);
+	      System.out.println(gmLevel);
+	      String sql = "select * from rank where user_id = ? and gm_level =?";
+	      
+	         psmt = conn.prepareStatement(sql);
+	         
+	         psmt.setString(1, userId);
+	         psmt.setInt(2, gmLevel);
+	         rs = psmt.executeQuery();
+	         if(rs.next()) {
+	            dto = new RankDTO();
+	            dto.setUserId(rs.getString("user_id"));
+	            dto.setGmClear(rs.getString("gm_clear"));
+	            dto.setGmLevel(rs.getInt("gm_level"));
+	            
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
 
-			getClose();
+	         getClose();
 
-		}
-		
-		return dto;
-		
-	}
+	      }
+	      
+	      return dto;
+	      
+	   }
 	
 	
 	
