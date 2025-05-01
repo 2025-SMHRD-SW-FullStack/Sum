@@ -71,6 +71,7 @@ public class RankDAO extends DBDAO{
 				dto.setUserId(rs.getString("user_id"));
 				dto.setGmClear(rs.getString("gm_clear"));
 				dto.setGmLevel(rs.getInt("gm_level"));
+				
 			}
 			
 		} catch (SQLException e) {

@@ -62,13 +62,15 @@ public class PlayMethod {
 	
 	
 	
-	   public void gameLevel(RankDTO dto, String userId, int gmLevel) {
+	   public void gameLevel(RankDTO dto, String userId, int level) {
 
-		      if (dto.getGmLevel() == 1) {
+		      if (level == 1) {
 
-		      } else if (dto.getGmLevel() == 2 && dto.getUserId().equals(userId) && dto.getGmClear().equals("Y")) {
+		      } else if (level == 2) {
 		         
-		         } else if (dto.getGmLevel() == 3 && dto.getUserId().equals(userId) && dto.getGmClear().equals("Y")) {
+		         } else if (level == 3 && dto.getUserId().equals(userId) && (dto.getGmLevel()== 2 && dto.getGmClear().equals("Y"))) {
+		        	 // 노말모드 클리어 여부 확인
+		        	 
 		            
 		      }
 		   }

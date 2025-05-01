@@ -16,6 +16,9 @@ public class CashMain {
       boolean chk2 = false;
       CashDAO dao = new CashDAO();
       CashDTO dto = new CashDTO();
+      RankDAO rdao = new RankDAO();
+      RankDTO rdto = new RankDTO();
+      
       PlayMethod play = new PlayMethod();
       int dayCount = 0; // 성공한 날짜
       int radishPrice =0;
@@ -30,6 +33,7 @@ public class CashMain {
             System.out.println("===================================");
             System.out.print("\t[1]로그인 [2]회원가입 >> ");
             int num = sc.nextInt();
+            
             
             
             if (num == 1) {
@@ -64,9 +68,19 @@ public class CashMain {
             System.out.print("     [1]게임 시작 [2]스토리 보기 >> ");
             int number = sc.nextInt();
 
+            
+      
             if (number == 1) {
+            	
+            	System.out.println("========= 난이도를 선택하세요! =========");
+                System.out.print("     [1]쉬움 [2]보통 [3]어려움 >> ");
+                int level = sc.nextInt();
+                
+                rdto = rdao.levelSelect(dto.getUserId(),level);
+                play.gameLevel(rdto, dto.getUserId(), level);
+            	
                for (int i = 1; i < 8; i++) { // 장사 날짜
-                  System.out.println("----------[ " + i + "일 째! ]----------");
+                  System.out.println("  ----------[ " + i + "일 째! ]----------");
                   System.out.println("\t===== 카탈로그 =====");
                   for (int j = 0; j < play.object(1).size()-1; j++) { // 카탈로그 출력
                      System.out.println("\t| " + play.object(1).get(j).getObject() + " :\t" + play.object(1).get(j).getObjectSel()+ "벨" + "\t|");

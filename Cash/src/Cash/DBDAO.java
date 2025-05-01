@@ -24,11 +24,11 @@ public class DBDAO {
 
 			conn = DriverManager.getConnection(url, userName, pw);
 
-			if (conn == null) {
-				System.out.println("연결 실패");
-			} else {
-				System.out.println("연결 성공");
-			}
+//			if (conn == null) {
+//				System.out.println("연결 실패");
+//			} else {
+//				System.out.println("연결 성공");
+//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

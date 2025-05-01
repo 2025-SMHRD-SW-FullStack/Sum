@@ -19,6 +19,9 @@ public class RankDTO {
 		this.gmClear = gmClear;
 	}
 	
+	public RankDTO() {
+		
+	}
 	
 	
 	public String getUserId() {
