@@ -60,6 +60,8 @@ public class PlayMethod {
 		// 최종값에서 환불금 뺀 금액이 시재에 저장되어야하기에 환불금을 리턴 해줌
 	}
 	
+	
+	
 	   public void gameLevel(RankDTO dto, String userId, int gmLevel) {
 
 		      if (dto.getGmLevel() == 1) {
