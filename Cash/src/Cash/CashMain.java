@@ -30,7 +30,8 @@ public class CashMain {
             System.out.println("===================================");
             System.out.print("\t[1]로그인 [2]회원가입 >> ");
             int num = sc.nextInt();
-
+            
+            
             if (num == 1) {
                System.out.println("========= ᡣ˶ᵔ ᵕ ᵔ˶𐭩 로그인 =========");
                System.out.print("ID : ");
